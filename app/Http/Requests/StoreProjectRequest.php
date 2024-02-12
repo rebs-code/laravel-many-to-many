@@ -31,6 +31,8 @@ class StoreProjectRequest extends FormRequest
             'slug' => ['nullable', 'string', 'max:255', 'unique:projects,slug'],
             //TYPE ID is nullable, but if it's not null, it must exist in the types table
             'type_id' => ['nullable', 'exists:types,id'],
+            //validate technology ids
+            'technologies' => ['nullable', 'exists:technologies,id'],
         ];
     }
 }

@@ -47,12 +47,14 @@ class ProjectController extends Controller
         $project = new Project($data);
         //create a slug from the name
         $project->slug = Str::of($project->name)->slug('-');
-        //images
-        // if ($data['image']) {
-        //     $project->image = Storage::put('uploads', $data['image']);
-        // }
+
         // save the project to the database
         $project->save();
+
+        //save the techs with array sync, after the save method
+        if (isset($data['technologies'])) {
+            $project->technologies()->sync($data['technologies']);
+        }
 
         //redirects to index
         return redirect()->route('admin.projects.index')->with('message', "$project->name project created successfully!");
