@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('technologies', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 30)->unique();
+            $table->string('slug', 30);
             $table->timestamps();
         });
     }
