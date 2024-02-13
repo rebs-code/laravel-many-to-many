@@ -9,6 +9,8 @@ class Technology extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['slug'];
+
     public function projects()
     {
         //a technology can have many projects

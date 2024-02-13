@@ -25,7 +25,9 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        //get all technologies
+        $technologies = Technology::all();
+        return view('admin.technologies.create', compact('technologies'));
     }
 
     /**
@@ -33,7 +35,19 @@ class TechnologyController extends Controller
      */
     public function store(StoreTechnologyRequest $request)
     {
-        //
+        //if the request is valid, I can use the validated data
+        $data = $request->validated();
+
+        // create a new technology with the validated data
+        $technology = new Technology($data);
+        //create a slug from the name
+        $technology->slug = Str::of($technology->name)->slug('-');
+
+        // save the technology to the database
+        $technology->save();
+
+        //redirects to index
+        return redirect()->route('admin.technologies.index')->with('message', "$technology->name technology created successfully!");
     }
 
     /**
