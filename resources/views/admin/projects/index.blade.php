@@ -50,10 +50,11 @@
                             <form
                                 action="
                                 {{ route('admin.projects.destroy', $project->slug) }}"
-                                method="POST">
+                                method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <input type="submit" value="Delete" class="btn btn-danger btn-sm text-white">
+                                <input type="submit" value="Delete" class="btn btn-danger btn-sm text-white"
+                                    style="display: inline;">
                             </form>
                         </td>
                     </tr>
