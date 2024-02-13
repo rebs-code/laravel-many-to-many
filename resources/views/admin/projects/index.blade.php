@@ -44,10 +44,17 @@
                         <td>{{ $project->slug }}</td>
                         <td>
                             <a href="{{ route('admin.projects.show', $project) }}" role="button"
-                                class="btn btn-primary btn-sm me-2">Show</a>
+                                class="btn btn-primary btn-sm me-1">Show</a>
                             <a href="{{ route('admin.projects.edit', $project) }}" role="button"
-                                class="btn btn-info btn-sm me-2 text-white">Edit</a>
-                            <a href="" role="button" class="btn btn-danger btn-sm">Delete</a>
+                                class="btn btn-info btn-sm me-1 text-white">Edit</a>
+                            <form
+                                action="
+                                {{ route('admin.projects.destroy', $project->slug) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="Delete" class="btn btn-danger btn-sm text-white">
+                            </form>
                         </td>
                     </tr>
                 @endforeach
